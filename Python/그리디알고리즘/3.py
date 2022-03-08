@@ -8,12 +8,13 @@
 '''
 
 S = list(input())
-result = 1
+result = int(S[0])
 
 for i in S:
-  if int(i) > 1:
-    result *= int(i)
-  else:
+  # 두 수 중에서 하나라도 '0' 혹은 '1'인 경우, 곱하기보다는 더하기 수행
+  if int(i) <= 1 or result <= 1:
     result += int(i)
+  else:
+    result *= int(i)
 
 print(result)

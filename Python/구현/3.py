@@ -44,9 +44,9 @@ step = [(2, 1), (2, -1), (-2, 1), (-2, -1), (1, 2), (1, -2), (-1, 2), (-1, -2)]
 cnt = 0
 
 for steps in step:
-  dx = row + steps[0]
-  dy = column + steps[1]
-  if 0 < dx < 9 and 0 < dy < 9:
+  next_row = row + steps[0]
+  next_column = column + steps[1]
+  if 0 < next_row < 9 and 0 < next_column < 9:
     cnt += 1
 
 print(cnt)

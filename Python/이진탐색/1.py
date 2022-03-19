@@ -17,11 +17,13 @@
 '''
 
 # 이진 탐색 소스코드 구현 (재귀 함수)
+
+
 def binary_search(array, target, start, end):
   if start > end:
     return None
   mid = (start + end) // 2
-  
+
   # 찾은 경우 중간점 인덱스 반환
   if array[mid] == target:
     return mid
@@ -49,6 +51,7 @@ def binary_search_while(array, target, start, end):
     else:
       start = mid + 1
   return None
+
 
 # n(원소의 개수)과 target(찾고자 하는 값)을 입력 받기
 n, target = list(map(int, input().split()))

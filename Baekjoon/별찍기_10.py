@@ -7,8 +7,10 @@
 # ***
 # N이 3보다 클 경우, 크기 N의 패턴은 공백으로 채워진 가운데의 (N/3)×(N/3) 정사각형을 크기 N/3의 패턴으로 둘러싼 형태이다. 
 
+import time
 
-
+start_time = time.time()
+# 리스트를 이용한 방법
 def draw_star(n):
   global Map
 
@@ -36,7 +38,27 @@ draw_star(n)
 for i in Map:
   for j in i:
     if j:
-      print('* ', end = '')
+      print('*', end = '')
     else:
-      print(' ', end = ' ')
+      print(' ', end = '')
   print()
+
+
+
+# 규칙을 이용하여 구한 방법 -> 시간초과
+
+# def draw_star(i, j ,n):
+#   if int(i / n) % 3 == 1 and int(j / n) % 3 == 1:
+#     print(" ", end = '')
+#   elif int(n / 3) == 0:
+#     print("*", end = '')
+#   else:
+#     draw_star(i, j, n / 3)
+
+# n = int(input())
+# for i in range(n):
+#   for j in range(n):
+#     draw_star(i, j, n)
+#   print()
+end_time = time.time()
+print(end_time - start_time)

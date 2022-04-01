@@ -222,4 +222,8 @@ xcuserdata/
 /*.gcno
 **/xcshareddata/WorkspaceSettings.xcsettings
 
+## playground
+*.xcplayground
+*.xcworkspace
+
 # End of https://www.toptal.com/developers/gitignore/api/macos,visualstudiocode,xcode,python

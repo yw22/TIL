@@ -1,9 +1,19 @@
-def solution(strings, n):
+from collections import defaultdict
+
+def solution(id_list, report, k):
     answer = []
-    for i in range(len(strings) - 1):
-        for j in range(i, len(strings)):
-            if strings[i][n] > strings[j][n]:
-                strings[i], strings[j] = strings[j], strings[i]
-    return strings
-arr = ["sun", "bed", "car"]
-print(solution(arr, 1))
+
+    x = defaultdict(set)
+    y = defaultdict(set)
+    for i in report:
+        report_from, report_to = i.split(' ')
+        x[report_from].add(report_to)
+        y[report_to].add(report_from)
+    
+    for id in id_list:
+        count = 0 
+        for re in x[id]:
+            if len(y[re]) >= k:
+                count += 1
+        answer.append(count)
+    return answer

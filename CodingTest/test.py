@@ -1,19 +1,12 @@
-from collections import defaultdict
-
-def solution(id_list, report, k):
-    answer = []
-
-    x = defaultdict(set)
-    y = defaultdict(set)
-    for i in report:
-        report_from, report_to = i.split(' ')
-        x[report_from].add(report_to)
-        y[report_to].add(report_from)
-    
-    for id in id_list:
-        count = 0 
-        for re in x[id]:
-            if len(y[re]) >= k:
-                count += 1
-        answer.append(count)
+def solution(arr1, arr2):
+    answer = [[0] * len(arr1[0]) for _ in range(len(arr1))]
+    for i in range(len(arr1)):
+        for j in range(len(arr2[0])):
+            for k in range(len(arr1[0])):
+                answer[i][j] += (arr1[i][k] * arr2[k][j])
     return answer
+
+
+arr1 = [[2, 3, 2], [4, 2, 4], [3, 1, 4]]
+arr2 = [[5, 4, 3], [2, 4, 1], [3, 1, 1]]    
+print(solution(arr1,arr2))

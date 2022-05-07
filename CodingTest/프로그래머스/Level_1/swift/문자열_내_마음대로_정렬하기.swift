@@ -16,12 +16,14 @@ func solution(_ new_id:String) -> String {
 
   
   //4단계 new_id에서 마침표(.)가 처음이나 끝에 위치한다면 제거합니다.
-  while id.first == "."{
-    id.removeFirst()
-  }
-  while id.last == "."{
-    id.removeLast()
-  }
+  id = id.trimmingCharacters(in: ["."])
+  
+  // while id.first == "."{
+  //   id.removeFirst()
+  // }
+  // while id.last == "."{
+  //   id.removeLast()
+  // }
   
   //5단계 new_id가 빈 문자열이라면, new_id에 "a"를 대입합니다.
   if id.isEmpty { id += "a" }

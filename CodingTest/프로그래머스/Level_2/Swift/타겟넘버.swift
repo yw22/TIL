@@ -63,3 +63,51 @@ func solution(_ numbers : [Int],_ target : Int) -> Int {
   }
   return answer
 }
+
+//-- deque를 직접 구현
+class Deque<T: Equatable> {
+  var enqueue: [T]
+  var dequeue: [T] = []
+  var count: Int {
+    return enqueue.count + dequeue.count
+  }
+  var isEmpty: Bool {
+    return enqueue.isEmpty && dequeue.isEmpty
+  }
+  
+  init(_ queue: [T]) {
+    enqueue = queue
+  }
+  
+  func pushLast(_ n: T) {
+    enqueue.append(n)
+  }
+  
+  func popFirst() -> T? {
+    if dequeue.isEmpty {
+      dequeue = enqueue.reversed()
+      enqueue.removeAll()
+    }
+    return dequeue.popLast()
+  }
+}
+
+
+func solution(_ numbers : [Int],_ target : Int) -> Int {
+  var answer = 0
+  let queue = Deque<[Int]>([[numbers[0], 0]])
+  
+  queue.pushLast([numbers[0] * -1, 0])
+  while !queue.isEmpty{
+    let arr = queue.popFirst()!
+    let num = arr[0]
+    let i = arr[1]
+    if i + 1 == numbers.count {
+      if num == target { answer += 1 }
+    } else {
+      queue.pushLast([num + numbers[i + 1], i + 1])
+      queue.pushLast([num - numbers[i + 1], i + 1])
+    }
+  }
+  return answer
+}

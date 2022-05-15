@@ -29,3 +29,30 @@ func solution(_ id_list:[String], _ report:[String], _ k:Int) -> [Int] {
 
 print(solution(["muzi", "frodo", "apeach", "neo"], ["muzi frodo","apeach frodo","frodo neo","muzi neo","apeach muzi"], 2))
 
+
+//-- check : 1
+
+func solution(_ id_list:[String], _ report:[String], _ k:Int) -> [Int] {
+    //[유저아이디 : 신고한 유저 아이디]
+    var userReport = [ String : [String]]()
+    //[유저아이디 : 신고당한 수]
+    var userReportedCount = [ String : Int]()
+
+    Set(report).forEach{
+        let reporting = $0.components(separatedBy : " ")
+        userReport[reporting[0]] = (userReport[reporting[0]] ?? []) + [reporting[1]]
+        userReportedCount[reporting[1]] = (userReportedCount[reporting[1]] ?? 0) + 1
+    }
+    
+    let result = id_list.map { id -> Int in
+        var count = 0
+        (userReport[id] ?? []).forEach{
+            if userReportedCount[$0]! >= k {
+                count += 1
+            }
+        }
+        return count
+    }
+    
+    return result
+}

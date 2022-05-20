@@ -1,7 +1,7 @@
 # TIL
 >Today I Learned
 
-## Agorithm
+<!-- ## Agorithm
 
 ### 구현
 ### 그리디 알고리즘
@@ -23,4 +23,4 @@
 <br>
 
 ## 프로그래머스
-
+ -->

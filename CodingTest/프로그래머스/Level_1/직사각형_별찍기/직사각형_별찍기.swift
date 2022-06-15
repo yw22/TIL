@@ -17,3 +17,8 @@ for _ in 0 ..< n{
 for _ in 0..<input[0] {
   print(Array(repeating: "*", count: 10).joined())
 }
+
+// components로 입력받기
+
+let n = readLine()!.components(separated: [" "]).map { Int($0)! }
+print(String(repeating: String(repeating: "*", count: n[0])+"\n", count: n[1]))

@@ -1,33 +1,26 @@
 import Foundation
-struct solution1{ //-- 내 첫번째 풀이 (직접 2진수로 변경후 zip을 활용한 비교방식)
-  func binary (_ num : Int ,_ count : Int) -> String {
-    var s = ""
-    var n = num
-    while n > 0{
-      s += String(n % 2)
-      n = n / 2
-    }
-    return String(format: "%0\(count)ld", Int(String(s.reversed())) ?? 0)
-  }
-  
-  func solution(_ n:Int, _ arr1:[Int], _ arr2:[Int]) -> [String] {
-    var answer: [String] = []
+
+//-- 내 첫번째 풀이 (직접 2진수로 변경후 zip을 활용한 비교방식)
+func solution(_ n:Int, _ arr1:[Int], _ arr2:[Int]) -> [String] {
+    let arr1 = arr1.map{ Int(String($0, radix: 2))! }
+    let arr2 = arr2.map{ Int(String($0, radix: 2))! }
     
-    let a1 = arr1.map{binary($0, n)}
-    let a2 = arr2.map{binary($0, n)}
+    var newArr = [String]()
     
-    for (x,y) in zip(a1,a2) {
-      let newString : [String] = zip(x,y).map{
-        guard String($0) == "1" || String($1) == "1" else { return " " }
-        return "#"
-      }
-      answer += [newString.joined()]
+    for (i,j) in zip(arr1, arr2) {
+        newArr.append(String(format: "%0\(n)ld", i + j))        
     }
-    return answer
-  }
+    
+    for i in 0..<newArr.count{
+        newArr[i] = newArr[i].replacingOccurrences(of: "0", with: " ")
+        newArr[i] = newArr[i].replacingOccurrences(of: "1", with: "#")
+        newArr[i] = newArr[i].replacingOccurrences(of: "2", with: "#")
+    }
+    
+    return newArr
 }
 
-
+// 비트 연산자를 이용한 방ㅓ
 func solution(_ n:Int, _ arr1:[Int], _ arr2:[Int]) -> [String] {
   var mergeArr: [String] = []   // arr1, arr2를 합친 값을 담을 배열
   var answer: [String] = []   // #를 담을 배열

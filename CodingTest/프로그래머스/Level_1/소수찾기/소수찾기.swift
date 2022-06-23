@@ -15,13 +15,12 @@ func solution(_ n:Int) -> Int {
 //-- 반복문
 
 func solution(_ n:Int) -> Int {
+  guard n > 2 else{ return 1 }
   var count = 1
   for i in 3...n{
       for j in 2..<i {
-          if i % j == 0 {
-            count += 1
-            break
-          }
+          if i % j == 0 { break }
+          if j == i - 1 { count += 1 }
       }
   }
   return count

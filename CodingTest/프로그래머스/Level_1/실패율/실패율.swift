@@ -157,6 +157,3 @@ func solution(_ n:Int, _ stages:[Int]) -> [Int] {
     
     return dicFalse.sorted(by: <).sorted{$0.1 > $1.1}.map{$0.key}
 }
-
-
-solution(5, [2, 1, 2, 6, 2, 4, 3, 3])

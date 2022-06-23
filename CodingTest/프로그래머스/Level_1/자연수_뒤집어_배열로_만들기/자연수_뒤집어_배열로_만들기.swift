@@ -1,6 +1,5 @@
 func solution(_ n:Int64) -> [Int] {
-    
-    let str = String(n).map{ String($0) }
-    let answer = str.reversed().map{Int($0)!}
+    let str = String(n).map{ Int(String($0)!) }
+    let answer = str.reversed()
     return answer
 }

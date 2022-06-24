@@ -1,5 +1,34 @@
 import Foundation
 
+
+//-- 내 풀이
+
+import Foundation
+
+func solution(_ n:Int, _ stages:[Int]) -> [Int] {
+    // 각 단계별로 실패율 계산
+    var total = Float(stages.count)
+    var dicFalse = [Int: Float]()
+    for i in stages {
+        dicFalse[i] = (dicFalse[i] ?? 0) + 1
+    }
+    
+    for i in 1...n {
+        if total != 0{
+            let temp = dicFalse[i] ?? 0
+            dicFalse[i] = (dicFalse[i] ?? 0) / total
+            total -= temp
+        }
+    }
+    
+    dicFalse[n + 1] = nil
+    
+    // 스테이지의 단계순으로 정렬 후 실패율이 높은순으로 정렬
+
+    return dicFalse.sorted(by: <).sorted{$0.1 > $1.1}.map{$0.key}
+}
+
+
 // 현재 스테이지 인원 계산
 func nowStageCount(_ arr: [Int], _ n: Int) -> Int {
   var count = 0
@@ -130,30 +159,3 @@ func betterCode() {
 }
 
 
-//-------------(51.76ms, 25.6MB)
-
-import Foundation
-
-func solution(_ n:Int, _ stages:[Int]) -> [Int] {
-    // 각 단계별로 실패율 계산
-    var total = Float(stages.count)
-    var dicFalse = [Int: Float]()
-    for i in stages {
-        dicFalse[i] = (dicFalse[i] ?? 0) + 1
-    }
-    
-    for i in 1...n {
-        if total != 0{
-            let temp = dicFalse[i] ?? 0
-            dicFalse[i] = (dicFalse[i] ?? 0) / total
-            total -= temp
-        }
-    }
-    
-    dicFalse[n + 1] = nil
-    
-    // 실패율이 높은 순으로 정렬, 실패율이 같을경우 스테이지가 낮은 순으로 정렬
-
-    
-    return dicFalse.sorted(by: <).sorted{$0.1 > $1.1}.map{$0.key}
-}

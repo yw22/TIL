@@ -15,8 +15,6 @@ func solution(_ s:String) -> Bool {
 //-- components을 이용한 방법
 func solution(_ s:String) -> Bool
 {
-    let string = s.lowercased()
-    return string.components(separatedBy: "p").count == string.components(separatedBy: "y").count
+    let s = s.lowercased()
+    return s.components(separatedBy: "p").count == s.components(separatedBy: "y").count
 }
-
-//-- 

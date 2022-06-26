@@ -1,6 +1,6 @@
 import Foundation
 
-
+// 노가다..
 func solution(_ numbers:[Int], _ hand:String) -> String {
   func checkRL(_ number : Int) -> String {
     var left = 0
@@ -159,4 +159,79 @@ func solution(_ numbers:[Int], _ hand:String) -> String {
   return result
 }
 
-print(solution([7, 8, 8, 8, 8, 3, 1, 5, 7, 6, 2], "left"))
+//-- 좀더 좋은 풀이
+func solution(_ numbers:[Int], _ hand:String) -> String {
+    var result = ""
+
+    for i in numbers{
+        result += check(i, hand)
+    }
+    
+    return result
+}
+
+
+          // 어느 손가락이 누르는지 체크
+func check(_ num: Int, _ hand: String) -> String {
+    var rf = -2
+    var lf = -1
+    
+    switch num {
+    case 1,4,7:
+        lf = num
+        return "L"
+        
+    case 3,6,9:
+        rf = num
+        return "R"
+        
+    default:
+        let rLen = len(rf,num)
+        let lLen = len(lf,num)
+        
+        if rLen < lLen {
+            rf = num
+            return "R"
+        } else if rLen > lLen{
+            lf = num
+            return "L"
+        } else {
+            if hand == "right"{
+                rf = num
+                return "R"
+            } else {
+                lf = num
+                return "L"
+            }
+        }
+    }
+}
+
+          // 키패드 거리 계산
+func len (_ current: Int, _ nextNum: Int) -> Int {
+    
+    let p = [[1,2,3],
+             [4,5,6],
+             [7,8,9],
+             [-1,0,-2]]
+    
+    var rc1 = [Int]()
+    var rc2 = [Int]()
+    
+    for i in 0..<4{
+        for j in 0..<3{
+            if p[i][j] == current{
+                rc1 = [i,j]
+            }
+            if p[i][j] == nextNum{
+                rc2 = [i,j]
+            }
+        }
+    }
+    
+    let len1 = (rc1[0] - rc2[0]) < 0 ? -(rc1[0] - rc2[0]) : (rc1[0] - rc2[0])
+    let len2 = (rc1[1] - rc2[1]) < 0 ? -(rc1[1] - rc2[1]) : (rc1[1] - rc2[1])
+    
+    return len1 + len2
+    
+}

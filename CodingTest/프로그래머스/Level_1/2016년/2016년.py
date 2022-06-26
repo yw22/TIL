@@ -1,3 +1,5 @@
+
+
 def solution(a, b):
     days = ['THU','FRI','SAT','SUN','MON','TUE','WED']
     day = 0

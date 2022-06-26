@@ -3,7 +3,9 @@ import Foundation
 func solution(_ price:Int, _ money:Int, _ count:Int) -> Int64{
     var money = Int64(money)
     let price = Int64(price)
-    for i in 1...count { money -= price * Int64(i) }
+    for i in 1...count { 
+        money -= price * Int64(i) 
+    }
 
     return money < 0 ? -money : Int64(0)
 }

@@ -9,4 +9,12 @@ func solution(_ price:Int, _ money:Int, _ count:Int) -> Int64{
 }
 
 // -- 수열을 사용하고싶을때
-// let totalPrice = price * (count * (count+1)/2)
+func solution(_ price:Int, _ money:Int, _ count:Int) -> Int64{
+    let totalPrice = price * (count * (count+1)/2)
+
+    if money >= totalPrice {
+        return 0
+    }
+
+    return Int64(totalPrice - money)
+}

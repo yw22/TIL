@@ -7,7 +7,6 @@ func solution(_ n:Int) -> Int {
 }
 
 //-- radix 없이
-import Foundation
 
 func change(_ num: Int) -> Int{
     var n = num

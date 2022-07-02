@@ -44,3 +44,37 @@ func solution(_ new_id:String) -> String {
   
   return id
 }
+
+//-- 2차도전 
+
+func solution(_ new_id:String) -> String {
+    var id = new_id
+    
+    //-- 1
+    id = new_id.lowercased()
+    
+    //-- 2
+    id = id.filter{ $0.isNumber || $0.isLetter || String($0) == "-" || String($0) == "_" || String($0) == "."}
+    
+    //-- 3
+    while id.contains("..") {
+        id = id.replacingOccurrences(of: "..", with: ".")
+    }
+    
+    //-- 4
+    id = id.trimmingCharacters(in: ["."])
+
+    //-- 5 
+    if id.isEmpty { id += "a" }
+    
+    //-- 6
+    if id.count > 15 { id = String(id.prefix(15)) }
+    id = id.trimmingCharacters(in: ["."])
+    
+    //-- 7
+    while id.count < 3 {
+        id += String(id.last!)
+    }
+    
+    return id
+}

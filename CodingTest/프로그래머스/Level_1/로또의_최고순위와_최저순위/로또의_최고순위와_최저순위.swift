@@ -24,3 +24,22 @@ func solution(_ lottos:[Int], _ win_nums:[Int]) -> [Int] {
 
     return [highRanking,lowRanking]
 }
+
+// 딕셔너리로 매치
+func solution(_ lottos:[Int], _ win_nums:[Int]) -> [Int] {
+    // 랭크 매치
+    var rankDic: [Int: Int] = [0: 6, 1: 6, 2: 5, 3: 4, 4: 3, 5: 2, 6: 1]
+    
+    // 잃어버린 숫자 카운트
+    var count = 0
+    // 맞춘 숫자 카운트
+    var checkCount = 0
+    
+    lottos.forEach{
+        if $0 == 0 {count += 1}
+        if win_nums.contains($0) {checkCount += 1}
+    }
+    
+    return [rankDic[checkCount + count]!, rankDic[checkCount]!]
+    
+}
